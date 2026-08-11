@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Правила СДЭК — полный справочник по оказанию услуг</title>
+<meta name="description" content="Официальные правила оказания услуг СДЭК: виды услуг, сервис «Надёжная сделка», страхование, запрещённые вложения, требования к упаковке и маркировке.">
+<style>
+  /* ===== Сброс и базовые стили ===== */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:80px}
+  body{
+    font-family:'Inter','Helvetica Neue','Segoe UI',Arial,sans-serif;
+    font-size:16px;line-height:1.6;color:#1A1A1A;
+    background:#FFFFFF;-webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  ul{list-style:none}
+
+  /* ===== Палитра СДЭК (официальный сайт cdek.ru) ===== */
+  :root{
+    --cdek-lime:#D6FF00;       /* фирменный лаймовый — основной акцент */
+    --cdek-lime-dark:#A8CC00;  /* тёмный лаймовый для hover/градиентов */
+    --cdek-black:#1A1A1A;      /* основной тёмный */
+    --cdek-black-soft:#2B2B2B;/* мягкий чёрный для карточек */
+    --cdek-gray-100:#F5F5F5;   /* светлый фон секций */
+    --cdek-gray-200:#EAEAEA;   /* разделители */
+    --cdek-gray-500:#9E9E9E;   /* серый текст */
+    --cdek-gray-700:#5C5C5C;   /* вторичный текст */
+    --cdek-white:#FFFFFF;
+  }
+
+  .container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+  /* ===== Шапка ===== */
+  .header{
+    position:sticky;top:0;z-index:100;
+    background:var(--cdek-black);
+    border-bottom:3px solid var(--cdek-lime);
+  }
+  .header__inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:24px;letter-spacing:-.5px;color:var(--cdek-white)}
+  .logo__mark{
+    background:var(--cdek-lime);color:var(--cdek-black);
+    padding:6px 10px;border-radius:6px;font-size:18px;
+    font-weight:900;letter-spacing:1px;
+  }
+  .logo__mark span{color:var(--cdek-black)}
+  .nav{display:flex;gap:28px}
+  .nav a{
+    color:var(--cdek-white);font-size:14px;font-weight:500;
+    padding:8px 0;position:relative;transition:color .2s;
+  }
+  .nav a:hover{color:var(--cdek-lime)}
+  .nav a::after{
+    content:'';position:absolute;bottom:0;left:0;
+    width:0;height:2px;background:var(--cdek-lime);transition:width .2s;
+  }
+  .nav a:hover::after{width:100%}
+  .burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
+  .burger span{display:block;width:24px;height:2px;background:var(--cdek-lime);margin:5px 0;transition:.3s}
+
+  /* ===== Hero ===== */
+  .hero{
+    background:var(--cdek-black);
+    color:var(--cdek-white);
+    padding:100px 0 120px;
+    position:relative;overflow:hidden;
+  }
+  .hero::before{
+    content:'';position:absolute;top:-200px;right:-200px;
+    width:600px;height:600px;border-radius:50%;
+    background:radial-gradient(circle,rgba(214,255,0,.15) 0%,transparent 70%);
+  }
+  .hero::after{
+    content:'';position:absolute;bottom:-300px;left:-100px;
+    width:500px;height:500px;border-radius:50%;
+    background:radial-gradient(circle,rgba(214,255,0,.08) 0%,transparent 70%);
+  }
+  .hero__content{position:relative;z-index:2;max-width:820px}
+  .hero__eyebrow{
+    display:inline-block;background:var(--cdek-lime);color:var(--cdek-black);
+    padding:6px 14px;border-radius:4px;font-size:13px;font-weight:700;
+    text-transform:uppercase;letter-spacing:1.5px;margin-bottom:24px;
+  }
+  .hero h1{
+    font-size:56px;font-weight:900;line-height:1.1;margin-bottom:24px;
+    letter-spacing:-1.5px;
+  }
+  .hero h1 span{color:var(--cdek-lime)}
+  .hero p{font-size:19px;color:#C9C9C9;margin-bottom:40px;max-width:680px}
+  .hero__actions{display:flex;gap:16px;flex-wrap:wrap}
+  .btn{
+    display:inline-block;padding:14px 28px;border-radius:8px;
+    font-weight:700;font-size:15px;cursor:pointer;
+    transition:all .2s;border:2px solid transparent;
+  }
+  .btn--primary{background:var(--cdek-lime);color:var(--cdek-black)}
+  .btn--primary:hover{background:var(--cdek-lime-dark);transform:translateY(-2px)}
+  .btn--ghost{background:transparent;color:var(--cdek-white);border-color:var(--cdek-white)}
+  .btn--ghost:hover{background:var(--cdek-white);color:var(--cdek-black)}
+
+  /* ===== Секции ===== */
+  section{padding:96px 0}
+  .section--gray{background:var(--cdek-gray-100)}
+  .section--dark{background:var(--cdek-black);color:var(--cdek-white)}
+
+  .section__head{text-align:center;margin-bottom:64px}
+  .section__num{
+    display:inline-block;color:var(--cdek-lime);
+    font-size:14px;font-weight:700;letter-spacing:2px;
+    margin-bottom:12px;text-transform:uppercase;
+  }
+  .section--dark .section__num{color:var(--cdek-lime)}
+  .section__head h2{
+    font-size:42px;font-weight:800;letter-spacing:-1px;
+    margin-bottom:16px;
+  }
+  .section__head p{
+    font-size:17px;color:var(--cdek-gray-700);max-width:680px;margin:0 auto;
+  }
+  .section--dark .section__head p{color:#B5B5B5}
+
+  /* ===== Список услуг ===== */
+  .services{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:16px;
+  }
+  .service{
+    background:var(--cdek-white);padding:24px;border-radius:10px;
+    border:1px solid var(--cdek-gray-200);
+    transition:all .25s;position:relative;overflow:hidden;
+  }
+  .service::before{
+    content:'';position:absolute;left:0;top:0;bottom:0;
+    width:4px;background:var(--cdek-lime);transform:scaleY(0);transform-origin:top;
+    transition:transform .25s;
+  }
+  .service:hover{
+    border-color:var(--cdek-lime);transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+  }
+  .service:hover::before{transform:scaleY(1)}
+  .service h3{font-size:16px;font-weight:700;margin-bottom:8px;color:var(--cdek-black)}
+  .service p{font-size:14px;color:var(--cdek-gray-700);line-height:1.5}
+
+  /* ===== Карточки «Надёжная сделка» ===== */
+  .steps{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:24px;
+  }
+  .step{
+    background:var(--cdek-black-soft);padding:32px;border-radius:12px;
+    border:1px solid #3A3A3A;position:relative;
+    transition:all .25s;
+  }
+  .step:hover{
+    border-color:var(--cdek-lime);
+    transform:translateY(-4px);
+  }
+  .step__num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:48px;height:48px;border-radius:50%;
+    background:var(--cdek-lime);color:var(--cdek-black);
+    font-weight:900;font-size:20px;margin-bottom:20px;
+  }
+  .step h3{font-size:18px;font-weight:700;margin-bottom:10px;color:var(--cdek-white)}
+  .step p{font-size:14px;color:#B5B5B5;line-height:1.6}
+
+  /* ===== Таблицы страхования ===== */
+  .rates{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:24px;
+  }
+  .rate-card{
+    background:var(--cdek-white);border-radius:12px;overflow:hidden;
+    border:1px solid var(--cdek-gray-200);transition:all .25s;
+  }
+  .rate-card:hover{
+    box-shadow:0 12px 32px rgba(0,0,0,.08);
+    transform:translateY(-4px);
+  }
+  .rate-card__head{
+    background:var(--cdek-black);color:var(--cdek-white);
+    padding:20px 24px;border-bottom:3px solid var(--cdek-lime);
+  }
+  .rate-card__head h3{font-size:18px;font-weight:700}
+  .rate-card__head p{font-size:13px;color:#B5B5B5;margin-top:4px}
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:14px 24px;text-align:left;font-size:14px}
+  thead{background:var(--cdek-gray-100)}
+  th{font-weight:700;color:var(--cdek-black);font-size:13px;text-transform:uppercase;letter-spacing:.5px}
+  tbody tr{border-top:1px solid var(--cdek-gray-200)}
+  tbody td:last-child{font-weight:700;text-align:right;color:var(--cdek-black)}
+  .rate-note{
+    margin-top:24px;padding:18px 22px;
+    background:var(--cdek-gray-100);border-left:4px solid var(--cdek-lime);
+    border-radius:6px;font-size:14px;color:var(--cdek-gray-700);
+  }
+
+  /* ===== Запрещённые вложения ===== */
+  .prohibited{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:14px;
+  }
+  .prohibited__item{
+    display:flex;gap:14px;padding:18px;
+    background:var(--cdek-black-soft);border-radius:10px;
+    border:1px solid #3A3A3A;transition:all .25s;
+  }
+  .prohibited__item:hover{border-color:var(--cdek-lime);transform:translateX(4px)}
+  .prohibited__icon{
+    flex-shrink:0;width:36px;height:36px;border-radius:8px;
+    background:rgba(214,255,0,.12);color:var(--cdek-lime);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:18px;
+  }
+  .prohibited__text h4{font-size:15px;font-weight:700;margin-bottom:4px;color:var(--cdek-white)}
+  .prohibited__text p{font-size:13px;color:#B5B5B5;line-height:1.5}
+
+  /* ===== Упаковка ===== */
+  .packing{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:24px;margin-bottom:48px;
+  }
+  .pack-card{
+    background:var(--cdek-white);padding:32px;border-radius:12px;
+    border:1px solid var(--cdek-gray-200);
+    transition:all .25s;position:relative;overflow:hidden;
+  }
+  .pack-card::after{
+    content:'';position:absolute;top:0;right:0;
+    width:60px;height:60px;
+    background:linear-gradient(135deg,transparent 50%,var(--cdek-lime) 50%);
+    opacity:.15;
+  }
+  .pack-card:hover{
+    border-color:var(--cdek-lime);transform:translateY(-4px);
+    box-shadow:0 14px 36px rgba(0,0,0,.06);
+  }
+  .pack-card__icon{
+    width:48px;height:48px;border-radius:10px;
+    background:var(--cdek-black);color:var(--cdek-lime);
+    display:flex;align-items:center;justify-content:center;
+    font-size:24px;font-weight:900;margin-bottom:18px;
+  }
+  .pack-card h3{font-size:18px;font-weight:700;margin-bottom:10px;color:var(--cdek-black)}
+  .pack-card p{font-size:14px;color:var(--cdek-gray-700);line-height:1.6}
+
+  .rules{
+    background:var(--cdek-white);border-radius:12px;padding:40px;
+    border:1px solid var(--cdek-gray-200);
+  }
+  .rules h3{
+    font-size:22px;font-weight:800;margin-bottom:24px;color:var(--cdek-black);
+    display:flex;align-items:center;gap:12px;
+  }
+  .rules h3::before{
+    content:'';width:24px;height:3px;background:var(--cdek-lime);
+  }
+  .rules ol{padding-left:0;counter-reset:rule}
+  .rules li{
+    counter-increment:rule;padding:14px 0 14px 44px;
+    position:relative;border-bottom:1px solid var(--cdek-gray-200);
+    color:var(--cdek-gray-700);font-size:15px;
+  }
+  .rules li:last-child{border-bottom:0}
+  .rules li::before{
+    content:counter(rule);position:absolute;left:0;top:14px;
+    width:30px;height:30px;border-radius:50%;
+    background:var(--cdek-lime);color:var(--cdek-black);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:13px;
+  }
+
+  /* ===== CTA ===== */
+  .cta{
+    background:var(--cdek-lime);color:var(--cdek-black);
+    padding:80px 0;text-align:center;
+  }
+  .cta h2{font-size:40px;font-weight:900;letter-spacing:-1px;margin-bottom:16px}
+  .cta p{font-size:18px;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto;font-weight:500}
+  .cta .btn--dark{background:var(--cdek-black);color:var(--cdek-lime)}
+  .cta .btn--dark:hover{background:#000;transform:translateY(-2px)}
+
+  /* ===== Футер ===== */
+  .footer{
+    background:var(--cdek-black);color:#B5B5B5;
+    padding:60px 0 30px;border-top:3px solid var(--cdek-lime);
+  }
+  .footer__grid{
+    display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;
+    margin-bottom:40px;
+  }
+  .footer h4{color:var(--cdek-white);font-size:15px;font-weight:700;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+  .footer p{font-size:14px;line-height:1.6}
+  .footer ul li{margin-bottom:10px}
+  .footer ul a{font-size:14px;transition:color .2s}
+  .footer ul a:hover{color:var(--cdek-lime)}
+  .footer__bottom{
+    padding-top:24px;border-top:1px solid #2B2B2B;
+    font-size:13px;text-align:center;color:var(--cdek-gray-500);
+  }
+  .footer__brand{color:var(--cdek-white);font-weight:900;font-size:20px;margin-bottom:14px}
+  .footer__brand span{color:var(--cdek-lime)}
+
+  /* ===== Адаптив ===== */
+  @media (max-width:900px){
+    .hero h1{font-size:38px}
+    .section__head h2{font-size:30px}
+    .nav{display:none}
+    .burger{display:block}
+    .hero{padding:60px 0 80px}
+    section{padding:64px 0}
+    .footer__grid{grid-template-columns:1fr}
+    .rules{padding:28px}
+    .cta h2{font-size:28px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== Шапка ====== -->
+<header class="header">
+  <div class="container header__inner">
+    <a href="#" class="logo">
+      <span class="logo__mark">СДЭК</span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#services">Услуги</a>
+      <a href="#deal">Надёжная сделка</a>
+      <a href="#insurance">Страхование</a>
+      <a href="#prohibited">Запреты</a>
+      <a href="#packing">Упаковка</a>
+    </nav>
+    <button class="burger" aria-label="Меню" onclick="document.getElementById('nav').classList.toggle('open');this.classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ====== Hero ====== -->
+<section class="hero">
+  <div class="container hero__content">
+    <span class="hero__eyebrow">Регламент оказания услуг</span>
+    <h1>Правила <span>СДЭК</span> — полный справочник по оказанию услуг</h1>
+    <p>Официальные правила оказания услуг СДЭК: виды услуг и условия их оказания, сервис «Надёжная сделка», страхование отправлений, запрещённые к перевозке вложения, требования к упаковке и маркировке.</p>
+    <div class="hero__actions">
+      <a href="#services" class="btn btn--primary">Изучить правила</a>
+      <a href="#deal" class="btn btn--ghost">Надёжная сделка</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Раздел 1. Услуги и условия их оказания ====== -->
+<section id="services" class="section--gray">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__num">Раздел 01</span>
+      <h2>Услуги и условия их оказания</h2>
+      <p>Полный перечень услуг СДЭК, оказываемых клиентам — физическим и юридическим лицам, индивидуальным предпринимателям, в том числе сервис «Надёжная сделка». Услуги предоставляются на основании Регламента оказания услуг СДЭК (Приложение № 1).</p>
+    </div>
+    <div class="services">
+
+      <div class="service"><h3>Авиакарго</h3><p>Срочная авиадоставка грузов по России и за рубеж с минимальными сроками.</p></div>
+      <div class="service"><h3>Блиц-экспресс</h3><p>Ускоренная доставка отправлений «от двери до двери» по выгодной цене.</p></div>
+      <div class="service"><h3>Посылочка</h3><p>Экономичная доставка посылок с трек-номером по всей России.</p></div>
+      <div class="service"><h3>Обрешётка</h3><p>Дополнительная защитная упаковка груза деревянной обрешёткой.</p></div>
+      <div class="service"><h3>Погрузо-разгрузочные работы</h3><p>Услуги по погрузке и разгрузке отправлений на складе и в пунктах выдачи.</p></div>
+      <div class="service"><h3>Объявление стоимости</h3><p>Указание оценочной стоимости отправления для целей страхования.</p></div>
+      <div class="service"><h3>Доставка лично в руки</h3><p>Адресная передача отправления указанному получателю с подтверждением.</p></div>
+      <div class="service"><h3>Вскрытие отправления при приёме</h3><p>Проверка содержимого отправления при его приёме от отправителя.</p></div>
+      <div class="service"><h3>Вскрытие при выдаче</h3><p>Проверка содержимого в присутствии получателя перед выдачей.</p></div>
+      <div class="service"><h3>Хранение</h3><p>Хранение отправлений в пунктах выдачи и на складах СДЭК.</p></div>
+      <div class="service"><h3>Возврат отправления</h3><p>Возврат невостребованного отправления отправителю.</p></div>
+      <div class="service"><h3>Возврат по расписанию</h3><p>Регулярный возврат невостребованных отправлений по графику.</p></div>
+      <div class="service"><h3>Упаковка СДЭК</h3><p>Фирменная упаковка: коробки, пакеты, конверты и пупырчатая плёнка.</p></div>
+      <div class="service"><h3>Упаковка клиента</h3><p>Использование собственной упаковки клиента при отправке.</p></div>
+      <div class="service"><h3>Маркировка «Осторожно»</h3><p>Нанесение предупреждающей маркировки на хрупкие отправления.</p></div>
+      <div class="service"><h3>СМС-уведомление</h3><p>Информирование получателя о прибытии отправления по СМС.</p></div>
+      <div class="service"><h3>Уведомление по e-mail</h3><p>Информирование получателя и отправителя по электронной почте.</p></div>
+      <div class="service"><h3>Извещение о поступлении</h3><p>Уведомление о поступлении отправления в пункт выдачи.</p></div>
+      <div class="service"><h3>Примерка</h3><p>Возможность примерить вещи перед получением в пункте выдачи.</p></div>
+      <div class="service"><h3>Частичный отказ</h3><p>Отказ от части вложений при выдаче с оплатой только принятого.</p></div>
+      <div class="service"><h3>Полный отказ</h3><p>Отказ от всего отправления с его возвратом отправителю.</p></div>
+      <div class="service"><h3>Изменение адреса доставки</h3><p>Смена пункта выдачи или адреса доставки после отправки.</p></div>
+      <div class="service"><h3>Изменение получателя</h3><p>Смена получателя до момента выдачи отправления.</p></div>
+      <div class="service"><h3>Изменение контактных данных</h3><p>Обновление телефона или e-mail получателя или отправителя.</p></div>
+      <div class="service"><h3>Доставка в выходной день</h3><p>Курьерская доставка в субботу или воскресенье.</p></div>
+      <div class="service"><h3>Доставка в вечернее время</h3><p>Курьерская доставка в интервале с 18:00 до 23:00.</p></div>
+      <div class="service"><h3>Доставка в праздничный день</h3><p>Доставка в официальные праздничные дни по согласованию.</p></div>
+      <div class="service"><h3>Ожидание курьера</h3><p>Бесплатное ожидание курьером 15 минут, далее — поминутно.</p></div>
+      <div class="service"><h3>Подъём на этаж</h3><p>Доставка тяжёлых отправлений на этаж получателя.</p></div>
+      <div class="service"><h3>Доставка в торговый центр</h3><p>Передача отправления в офис или пункт самовывоза в ТЦ.</p></div>
+      <div class="service"><h3>Доставка в бизнес-центр</h3><p>Доставка в БЦ с проходом через ресепшн и контроль доступа.</p></div>
+      <div class="service"><h3>Возврат документов</h3><p>Обратная пересылка подписанных документов и договоров.</p></div>
+      <div class="service"><h3>Доставка по расписанию</h3><p>Регулярная курьерская доставка по утверждённому графику.</p></div>
+      <div class="service"><h3>Партия отправлений</h3><p>Оформление и сдача партии отправлений одним реестром.</p></div>
+      <div class="service"><h3>Магистральная доставка</h3><p>Перевозка между складами СДЭК без участия курьера.</p></div>
+      <div class="service"><h3>Ответственное хранение</h3><p>Длительное хранение грузов на отапливаемом складе СДЭК.</p></div>
+      <div class="service"><h3>Кросс-докинг</h3><p>Перераспределение грузов через сортировочный склад без хранения.</p></div>
+      <div class="service"><h3>Фулфилмент</h3><p>Комплексные услуги для интернет-магазинов: приём, хранение, упаковка, отгрузка.</p></div>
+      <div class="service"><h3>Возврат интернет-магазину</h3><p>Сервис возврата товаров от покупателей в интернет-магазин.</p></div>
+      <div class="service"><h3>Сборный груз</h3><p>Доставка малогабаритных грузов в составе сборной партии.</p></div>
+      <div class="service"><h3>Негабаритный груз</h3><p>Перевозка крупногабаритных и тяжеловесных отправлений.</p></div>
+      <div class="service"><h3>Опасный груз</h3><p>Перевозка грузов повышенной опасности с соблюдением требований.</p></div>
+      <div class="service"><h3>Юридическое отправление</h3><p>Пересылка юридически значимых документов и корреспонденции.</p></div>
+      <div class="service"><h3>Электронный документооборот</h3><p>Подключение ЭДО для обмена накладными и актами.</p></div>
+      <div class="service"><h3>Онлайн-оплата</h3><p>Оплата услуг СДЭК банковской картой или через СБП.</p></div>
+      <div class="service"><h3>Надёжная сделка</h3><p>Сервис безопасных расчётов между покупателем и продавцом.</p></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ====== Раздел 2. Надёжная сделка ====== -->
+<section id="deal" class="section--dark">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__num">Раздел 02</span>
+      <h2>Сервис «Надёжная сделка»</h2>
+      <p>Сервис безопасной оплаты при покупке-продаже товаров между физическими лицами. Деньги покупателя замораживаются на специальном счёте и передаются продавцу только после подтверждения получения товара.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step__num">1</span>
+        <h3>Покупатель оформляет заказ</h3>
+        <p>Покупатель выбирает товар и оплачивает его стоимость через сервис «Надёжная сделка» на сайте nalozhka.cdek.ru.</p>
+      </div>
+      <div class="step">
+        <span class="step__num">2</span>
+        <h3>Продавец отправляет товар</h3>
+        <p>Продавец передаёт отправление в СДЭК и получает трек-номер для отслеживания.</p>
+      </div>
+      <div class="step">
+        <span class="step__num">3</span>
+        <h3>Покупатель проверяет и подтверждает</h3>
+        <p>После получения посылки покупатель осматривает товар и подтверждает сделку в личном кабинете.</p>
+      </div>
+      <div class="step">
+        <span class="step__num">4</span>
+        <h3>Деньги перечисляются продавцу</h3>
+        <p>После подтверждения деньги автоматически перечисляются продавцу на его банковскую карту.</p>
+      </div>
+    </div>
+    <p style="margin-top:32px;text-align:center;color:#B5B5B5;font-size:14px">Если товар не подошёл — деньги возвращаются покупателю. Условия сервиса описаны в Приложении № 4 к Регламенту СДЭК.</p>
+  </div>
+</section>
+
+<!-- ====== Раздел 3. Страхование ====== -->
+<section id="insurance">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__num">Раздел 03</span>
+      <h2>Страхование отправлений</h2>
+      <p>СДЭК страхует принятые отправления на случай утраты и повреждения в соответствии с Приложением № 6 к Регламенту. Размер страхового сбора зависит от объявленной стоимости отправления.</p>
+    </div>
+
+    <div class="rates">
+
+      <div class="rate-card">
+        <div class="rate-card__head">
+          <h3>Интернет-магазины (ИМ)</h3>
+          <p>Отправления от интернет-магазинов по договору</p>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Объявленная стоимость</th><th>Сбор</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>до 50 000 ₽</td><td>0,45%</td></tr>
+            <tr><td>от 50 001 до 200 000 ₽</td><td>0,40%</td></tr>
+            <tr><td>от 200 001 до 500 000 ₽</td><td>0,35%</td></tr>
+            <tr><td>от 500 001 до 1 000 000 ₽</td><td>0,30%</td></tr>
+            <tr><td>свыше 1 000 000 ₽</td><td>0,25%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rate-card">
+        <div class="rate-card__head">
+          <h3>Корпоративные клиенты (КУ)</h3>
+          <p>Юридические лица по договору</p>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Объявленная стоимость</th><th>Сбор</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>до 50 000 ₽</td><td>0,55%</td></tr>
+            <tr><td>от 50 001 до 200 000 ₽</td><td>0,50%</td></tr>
+            <tr><td>от 200 001 до 500 000 ₽</td><td>0,45%</td></tr>
+            <tr><td>от 500 001 до 1 000 000 ₽</td><td>0,40%</td></tr>
+            <tr><td>свыше 1 000 000 ₽</td><td>0,35%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rate-card">
+        <div class="rate-card__head">
+          <h3>Услуга «Сборный груз»</h3>
+          <p>Физические лица без договора</p>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Объявленная стоимость</th><th>Сбор</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>до 20 000 ₽</td><td>1,00%</td></tr>
+            <tr><td>от 20 001 до 50 000 ₽</td><td>0,80%</td></tr>
+            <tr><td>от 50 001 до 100 000 ₽</td><td>0,60%</td></tr>
+            <tr><td>от 100 001 до 200 000 ₽</td><td>0,50%</td></tr>
+            <tr><td>свыше 200 000 ₽</td><td>0,40%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="rate-note">
+      <strong>Минимальный страховой сбор</strong> для услуги «Сборный груз» составляет 20 ₽ за отправление. Страхование покрывает риски утраты и повреждения вложения в процессе перевозки и хранения.
+    </div>
+  </div>
+</section>
+
+<!-- ====== Раздел 4. Запрещённые вложения ====== -->
+<section id="prohibited" class="section--dark">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__num">Раздел 04</span>
+      <h2>Запрещённые к перевозке отправления</h2>
+      <p>В соответствии с Приложением № 2 к Регламенту СДЭК запрещено принимать к перевозке отправления, содержащие вложения из следующего перечня:</p>
+    </div>
+
+    <div class="prohibited">
+
+      <div class="prohibited__item">
+        <div class="prohibited__icon">!</div>
+        <div class="prohibited__text">
+          <h4>Оружие и боеприпасы</h4>
+          <p>Огнестрельное, газовое, пневматическое, холодное и метательное оружие, боеприпасы к нему.</p>
+        </div>
+      </div>
+
+      <div class="prohibited__item">
+        <div class="prohibited__icon">!</div>
+        <div class="prohibited__text">
+          <h4>Наркотические и психотропные средства</h4>
+          <p>Наркотические, психотропные вещества и их прекурсоры, а также растения с содержанием таких веществ.</p>
+        </div>
+      </div>
+
+      <div class="prohibited__item">
+        <div class="prohibited__icon">!</div>
+        <div class="prohibited__text">
+          <h4>Яды и отравляющие вещества</h4>
+          <p>Сильнодействующие яды, токсины, отравляющие и радиоактивные вещества.</p>
+        </div>
+      </div>
+
+      <div class="prohibited__item">
+        <div class="prohibited__icon">!</div>
+        <div class="prohibited__text">
+          <h4>Денежные средства</h4>
+          <p>Наличные деньги в любой валюте, монеты из драгоценных металлов.</p>
+        </div>
+      </div>
+
+      <div class="prohibited__item">
+        <div class="prohibited__icon">!</div>
+        <div class="prohibited__text">
+          <h4>Драгоценности и камни</h4>
+          <p>Драгоценные металлы и камни в виде ювелирных изделий и в иных формах.</p>
+        </div>
+      </div>
+
+      <div class="prohibited__item">
+        <div class="prohibited__icon">!</div>
+        <div class="prohibited__text">
+          <h4>Взрывчатые вещества</h4>
+          <p>Взрывчатые вещества, пиротехнические изделия и средства взрывания.</p>
+        </div>
+      </div>
+
+      <div class="prohibited__item">
+        <div class="prohibited__icon">!</div>
+        <div class="prohibited__text">
+          <h4>Сжатые и сжиженные газы</h4>
+          <p>Баллоны со сжатым или сжиженным газом (в том числе бытовые газовые баллончики).</p>
+        </div>
+      </div>
+
+      <div class="prohibited__item">
+        <div class="prohibited__icon">!</div>
+        <div class="prohibited__text">
+          <h4>Легковоспламеняющиеся жидкости</h4>
+          <p>Бензин, керосин, ацетон, растворители и иные ЛВЖ в любой таре.</p>
+        </div>
+      </div>
+
+      <div class="prohibited__item">
+        <div class="prohibited__icon">!</div>
+        <div class="prohibited__text">
+          <h4>Щелочи и кислоты</h4>
+          <p>Едкие химические вещества: кислоты, щёлочи, концентрированные моющие средства.</p>
+        </div>
+      </div>
+
+      <div class="prohibited__item">
+        <div class="prohibited__icon">!</div>
+        <div class="prohibited__text">
+          <h4>Биологические материалы</h4>
+          <p>Образцы биологических жидкостей, тканей и органов, в том числе для медицинских целей.</p>
+        </div>
+      </div>
+
+      <div class="prohibited__item">
+        <div class="prohibited__icon">!</div>
+        <div class="prohibited__text">
+          <h4>Поддельные документы</h4>
+          <p>Документы государственного образца с признаками подделки, фальшивые денежные знаки.</p>
+        </div>
+      </div>
+
+      <div class="prohibited__item">
+        <div class="prohibited__icon">!</div>
+        <div class="prohibited__text">
+          <h4>Скоропортящиеся продукты</h4>
+          <p>Продукты питания без специальной термоупаковки, скоропортящиеся без возможности соблюдения температурного режима.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ====== Раздел 5. Упаковка ====== -->
+<section id="packing" class="section--gray">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__num">Раздел 05</span>
+      <h2>Требования к упаковке и маркировке</h2>
+      <p>Требования к упаковке и маркировке отправлений установлены Приложением № 3 к Регламенту СДЭК. Упаковка должна обеспечивать сохранность вложения при перевозке и хранении.</p>
+    </div>
+
+    <div class="packing">
+
+      <div class="pack-card">
+        <div class="pack-card__icon">📦</div>
+        <h3>Жёсткая коробка</h3>
+        <p>Гофрокороб с внутренними перегородками или наполнителем для хрупких предметов. Подходит для электроники, посуды, сувениров.</p>
+      </div>
+
+      <div class="pack-card">
+        <div class="pack-card__icon">🛍</div>
+        <h3>Мягкая упаковка</h3>
+        <p>Фирменный пакет СДЭК или курьерский пакет с пупырчатой плёнкой для одежды и текстиля.</p>
+      </div>
+
+      <div class="pack-card">
+        <div class="pack-card__icon">🛡</div>
+        <h3>Защита содержимого</h3>
+        <p>Использование воздушно-пузырчатой плёнки, пенопласта, вкладышей и демпферных наполнителей.</p>
+      </div>
+
+      <div class="pack-card">
+        <div class="pack-card__icon">🪵</div>
+        <h3>Обрешётка</h3>
+        <p>Деревянная обрешётка для крупногабаритных, тяжёлых и особо хрупких грузов.</p>
+      </div>
+
+      <div class="pack-card">
+        <div class="pack-card__icon">🟫</div>
+        <h3>Паллетирование</h3>
+        <p>Размещение отправлений на стандартном деревянном поддоне с обмоткой стрейч-плёнкой.</p>
+      </div>
+
+      <div class="pack-card">
+        <div class="pack-card__icon">🏷</div>
+        <h3>Маркировка</h3>
+        <p>Наклейка с трек-номером, адресами получателя и отправителя, знаки «Осторожно», «Хрупкое», «Верх».</p>
+      </div>
+
+    </div>
+
+    <div class="rules">
+      <h3>Общие правила упаковки</h3>
+      <ol>
+        <li>Упаковка должна полностью закрывать вложение и обеспечивать его сохранность при многократных перегрузках.</li>
+        <li>Внутри упаковки вложение должно быть зафиксировано — не должно смещаться при переворачивании.</li>
+        <li>Хрупкие предметы оборачиваются пупырчатой плёнкой или иным демпферным материалом со всех сторон.</li>
+        <li>Жидкости перевозятся в герметичной таре, помещённой внутрь дополнительной защитной упаковки.</li>
+        <li>Острые и режущие предметы должны иметь защитные колпачки или чехлы на острых частях.</li>
+        <li>На внешнюю сторону упаковки не должны выступать острые элементы, которые могут повредить другие отправления.</li>
+        <li>Адресные ярлыки и трек-номер наклеиваются на видное место и защищаются от влаги прозрачным скотчем.</li>
+        <li>Запрещается использовать повреждённую, загрязнённую или ранее использованную упаковку без дополнительного укрепления.</li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== CTA ====== -->
+<section class="cta">
+  <div class="container">
+    <h2>Готовы оформить отправление?</h2>
+    <p>Рассчитайте стоимость доставки, выберите пункт выдачи и оформите заказ за пару минут на сайте СДЭК.</p>
+    <a href="https://www.cdek.ru/ru/" target="_blank" rel="noopener" class="btn btn--dark">Перейти на cdek.ru</a>
+  </div>
+</section>
+
+<!-- ====== Футер ====== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand">СДЭК<span>.</span></div>
+        <p>Курьерская компания СДЭК — услуги доставки для частных лиц и бизнеса. Горячая линия: 8 800 250-04-05.</p>
+      </div>
+      <div>
+        <h4>Разделы</h4>
+        <ul>
+          <li><a href="#services">Услуги</a></li>
+          <li><a href="#deal">Надёжная сделка</a></li>
+          <li><a href="#insurance">Страхование</a></li>
+          <li><a href="#prohibited">Запреты</a></li>
+          <li><a href="#packing">Упаковка</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Приложения к Регламенту</h4>
+        <ul>
+          <li><a href="#services">№ 1 — Услуги и условия</a></li>
+          <li><a href="#prohibited">№ 2 — Запрещённые вложения</a></li>
+          <li><a href="#packing">№ 3 — Упаковка и маркировка</a></li>
+          <li><a href="#deal">№ 4 — Надёжная сделка</a></li>
+          <li><a href="#insurance">№ 6 — Страхование</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      © ООО «СДЭК», 2000–2026. Информационный лендинг составлен на основании Регламента оказания услуг СДЭК.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Плавная прокрутка для якорных ссылок
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',function(e){
+      const t=document.querySelector(this.getAttribute('href'));
+      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+    });
+  });
+</script>
+
+</body>
+</html>
